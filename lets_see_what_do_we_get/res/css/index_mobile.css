@@ -1,0 +1,21 @@
+body{
+    background: black ;
+    color: white;
+}
+a {
+    color: pink;
+    text-decoration: none;
+}
+.header {
+    filter: invert(100%);
+}
+.MickeyWatchSmall{
+    overflow: hidden;
+    width: 500px;
+    height: 600px;
+    zoom: 7.9%;
+}
+.main_right {
+    margin-left: auto;
+    margin-right: auto;
+}

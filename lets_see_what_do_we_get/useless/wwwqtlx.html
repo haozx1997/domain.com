@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <title>蜻蜓旅行</title>
+    <link rel="stylesheet" href="//q.qunarzz.com/travel_app/prd/styles/release/homepage@version.css">
+    <!-- 以下为openinstall集成代码，建议在html文档中尽量靠前放置，加快初始化过程 -->
+    <script type="text/javascript" src="//res.cdn.openinstall.io/openinstall.js"></script>
+    <script type="text/javascript">
+        //openinstall初始化时将与openinstall服务器交互，应尽可能早的调用
+        /*web页面向app传递的json数据(json string/js Object)，应用被拉起或是首次安装时，通过相应的android/ios api可以获取此数据*/
+        var data = OpenInstall.parseUrlParams();//openinstall.js中提供的工具函数，解析url中的所有查询参数
+        new OpenInstall({
+            /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+            appKey : "aeiplx",
+            /*可选参数，自定义android平台的apk下载文件名，只有apk在openinstall托管时才有效；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+            //apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+            /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+            //preferWakeup:true,
+            /*自定义遮罩的html*/
+            //mask:function(){
+            //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+            //},
+            /*openinstall初始化完成的回调函数，可选*/
+            onready : function() {
+                var m = this, button = document.getElementById("downloadButton");
+                button.style.visibility = "visible";
+
+                /*在app已安装的情况尝试拉起app*/
+                m.schemeWakeup();
+                /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+                button.onclick = function() {
+                    m.wakeupOrInstall();
+                    return false;
+                }
+            }
+        }, data);
+
+    </script>
+</head>
+<body id="homePage">
+<header class="header" id="header">
+    <div class="container">
+        <div class="logo">
+            <img src="//s.qunarzz.com/flight/sparrow/home_logo.png"/>
+        </div>
+        <div class="moreLinks hide">
+            <div class="icon" id="js-goWechat">
+                <img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/wechat.png"/>
+            </div>
+            <div class="icon" id="js-goWeibo">
+                <img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/sina.png"/>
+            </div>
+            <div class="icon" id="js-goZhihu">
+                <img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/zhihu.png"/>
+            </div>
+        </div>
+        <ul class="navi">
+            <li class="js-naviItem active" id="js-toMain">首页</li>
+            <li class="js-naviItem" id="js-toCore">核心功能</li>
+            <li class="js-naviItem" id="js-toComment">用户评论</li>
+        </ul>
+    </div>
+</header>
+<section class="mainBg" id="mainPage">
+    <div class="container">
+        <div class="leftModel">
+            <img src="//s.qunarzz.com/flight/sparrow/homepage/children.png"/>
+        </div>
+        <div class="rightModel js-rightModel">
+            <h2>什么时候、哪里买机票更划算</h2>
+            <div class="info">
+                <p class="js-mobile">旅行应该是美好的，研究怎么买票这些不美好的事情，交给蜻蜓旅行吧！</p>
+                <p class="js-mobile">通过大数据与人工智能的技术，我们能准确预测机票的价格走向，实时比较各平台的价格，对多种旅行线路进行分析，给您提供最好的购票建议。</p>
+                <p class="js-desktop hide">&nbsp;&nbsp;&nbsp;&nbsp;旅行应该是美好的，研究怎么买票这些不美好的事情，交给蜻蜓旅行吧！</p>
+                <p class="js-desktop hide">&nbsp;&nbsp;&nbsp;&nbsp;通过大数据与人工智能的技术，我们能准确预测机票的价格走向，实时比较各平台的价格，对多种旅行线路进行分析，给您提供最好的购票建议。</p>
+            </div>
+            <div class="qrCodes">
+                <div class="item">
+                    <div class="qrCode">
+                        <img src="//s.qunarzz.com/flight/sparrow/iosDownload.png"/>
+                    </div>
+                    <div class="info">
+                        <!--<div class="icon">-->
+                        <!--<img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/apple.png"/>-->
+                        <!--</div>-->
+                        <span>IOS版</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="qrCode">
+                        <img class="adr" src="//s.qunarzz.com/flight/sparrow/adrDownload.png"/>
+                    </div>
+                    <div class="info">
+                        <span>安卓版</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="qrCode">
+                        <img src="//s.qunarzz.com/flight/sparrow/miniProgram.png"/>
+                    </div>
+                    <div class="info">
+                        <!--<div class="icon">-->
+                        <!--<img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/miniPro.png"/>-->
+                        <!--</div>-->
+                        <span>小程序</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow" id="js-shadow">
+
+                <!--<a class="js-ios hide" href="https://itunes.apple.com/cn/app/%E8%9C%BB%E8%9C%93%E6%97%85%E8%A1%8C/id1410106710?mt=8">-->
+                <!--<div class="btn">-->
+                <!--<div class="img">-->
+                <!--<img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/apple_white.png"/>-->
+                <!--</div>-->
+                <!--<p>下载iPhone版</p>-->
+                <!--</div>-->
+                <!--</a>-->
+                <!--<a class="js-adr hide" href="https://www.pgyer.com/qingtinglvxing">-->
+                <!--<div class="btn">-->
+                <!--<p>下载安卓版</p>-->
+                <!--</div>-->
+                <!--</a>-->
+                <div class="btn" id="downloadButton">
+                    <!--<div class="img">-->
+                    <!--<img src="//s.qunarzz.com/flight/sparrow/homepage/iconImg/apple_white.png"/>-->
+                    <!--</div>-->
+                    <p>安装应用</p>
+                </div>
+                <div class="scrollBtn" id="js-scrollBtn">
+                    <i class="iconfont">&#xf3cb;</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="coreFunc" id="coreFunc">
+    <div class="container">
+        <h2>蜻蜓旅行</h2>
+        <p class="info">飞行预测专家，捕捉你想要的低价</p>
+        <ul class="func">
+            <li class="item">
+                <p class="name">省钱</p>
+                <div class="img">
+                    <img src="//s.qunarzz.com/flight/sparrow/homepage/benefit1.png"/>
+                </div>
+                <p class="info">价格走势预测</p>
+                <p class="info">平均每次购票可省&yen;120</p>
+            </li>
+            <li class="item">
+                <p class="name">省时</p>
+                <div class="img">
+                    <img src="//s.qunarzz.com/flight/sparrow/homepage/benefit2.png"/>
+                </div>
+                <p class="info">添加关注，低价监控</p>
+                <p class="info">实时贴心推送</p>
+            </li>
+            <li class="item">
+                <p class="name">省力</p>
+                <div class="img">
+                    <img src="//s.qunarzz.com/flight/sparrow/homepage/benefit3.png"/>
+                </div>
+                <p class="info">多平台比价</p>
+                <p class="info">从此告别跨平台搜索</p>
+            </li>
+            <li class="item">
+                <p class="name">便捷</p>
+                <div class="img">
+                    <img src="//s.qunarzz.com/flight/sparrow/homepage/benefit4.png"/>
+                </div>
+                <p class="info">低价分布</p>
+                <p class="info">一目了然</p>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="comments" id="userComment">
+    <div class="triTop">
+        <img src="//s.qunarzz.com/flight/sparrow/homepage/triangle1.png"/>
+    </div>
+    <div class="main">
+        <div class="container">
+            <h2>用户评论</h2>
+            <ul class="comment">
+                <li class="item">
+                    <div class="userHeader">
+                        <img src="//s.qunarzz.com/flight/sparrow/homepage/user_head1.png"/>
+                    </div>
+                    <p class="text">我经常全国各地去耍，用了蜻蜓旅行后，我发现北京到南京还会出现比火车票便宜的机票，路上省去了很多时间。</p>
+                    <p class="nickname">卢夕夕</p>
+                    <p class="time">2018/07/02 08:33</p>
+                </li>
+                <li class="item">
+                    <div class="userHeader">
+                        <img src="//s.qunarzz.com/flight/sparrow/homepage/user_head2.png"/>
+                    </div>
+                    <p class="text">蜻蜓旅行可以对比几个网站价格。这次回家买票，省事了不少。以后买机票就不用挨个去查了。</p>
+                    <p class="nickname">安妮塔</p>
+                    <p class="time">2018/07/28 22:38</p>
+                </li>
+                <li class="item">
+                    <div class="userHeader">
+                        <img src="//s.qunarzz.com/flight/sparrow/homepage/user_head3.png"/>
+                    </div>
+                    <p class="text">女朋友在乌鲁木齐，每次飞过去看他都要花好多钱，这次往返让我省下了400多块钱。</p>
+                    <p class="nickname">心情杂货铺</p>
+                    <p class="time">2018/08/03 15:27</p>
+                </li>
+                <li class="item">
+                    <div class="userHeader">
+                        <img src="//s.qunarzz.com/flight/sparrow/homepage/user_head4.png"/>
+                    </div>
+                    <p class="text">朋友在这个团队，有幸成为内测用户。通过提醒功能，买机票便宜了300多，感觉价格预测的建议还是挺靠谱的。</p>
+                    <p class="nickname">Pony</p>
+                    <p class="time">2018/07/20 10:26</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="triBottom">
+        <img src="//s.qunarzz.com/flight/sparrow/homepage/triangle2.png"/>
+    </div>
+    <div class="main">
+        <div class="container">
+            <ul class="download">
+                <li class="item ios">
+                    <div class="qrCode">
+                        <img src="//s.qunarzz.com/flight/sparrow/iosDownload.png"/>
+                    </div>
+                    <p class="info">ios版</p>
+                    <!--<p class="info">请用手机扫码下载</p>-->
+                </li>
+                <li class="item adr">
+                    <div class="qrCode">
+                        <img src="//s.qunarzz.com/flight/sparrow/adrDownload.png"/>
+                    </div>
+                    <p class="info">安卓版</p>
+                </li>
+                <li class="item wechat">
+                    <div class="qrCode">
+                        <img src="//s.qunarzz.com/flight/sparrow/miniProgram.png"/>
+                    </div>
+                    <p class="info">扫一扫</p>
+                    <p class="info">进入微信小程序</p>
+                </li>
+            </ul>
+            <div class="rights desktop">
+                <p>2018 © 蜻蜓旅行 | 京ICP备111013485号 | 比度（北京）国际旅行社有限公司 |
+                    <a href="privacy.htm"  target="_blank" style="text-decoration:none;color:inherit;">隐私政策</a>
+                </p>
+                <!--<p>| 地址 : 北京市西城区黄寺大街甲23号院1号楼16层1601-19室</p>-->
+                <!--<p>中国互联网举报中心 | 网络文化许可证-京网文-（2016）2282-264号 | 违法和不良信息举报：010-xxx34212 | 举报邮箱：jubao@qingtinglvxing.com</p>-->
+                <!--<p> 京公网安备 11010xxxxx3605号 </p>-->
+            </div>
+            <div class="rights mobile">
+                <p>2018 © 蜻蜓旅行 | 京ICP备111013485号 | 比度（北京）国际旅行社有限公司 |
+                    <a href="privacy.htm"  target="_blank" style="text-decoration:none;color:inherit;">隐私政策</a>
+                </p>
+                <!--<p>2018 © 蜻蜓旅行 | 京ICP备1601xxxx号-3</p>-->
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="m-dialog hide" id="js-wechat-dialog">
+    <div class="m-dialog-bg"></div>
+    <div class="m-dialog-bd">
+        <div class="close js-close">
+            <i class="iconfont">&#xf471;</i>
+        </div>
+        <div class="qrCode">
+            <img src="//s.qunarzz.com/flight/sparrow/public.jpg"/>
+        </div>
+        <p class="info">手机扫描二维码添加关注</p>
+    </div>
+</div>
+<script type="text/javascript" src="//common.qunarzz.com/lib/prd/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="//q.qunarzz.com/hysdk/prd/hysdk@1.3.10.js"></script>
+<script type="text/javascript" src="//q.qunarzz.com/travel_app/prd/lib@version.js"></script>
+<script type="text/javascript" src="//q.qunarzz.com/travel_app/prd/otherPage/homepage/index@version.js"></script>
+<!-- <script type="text/javascript" id="_openinstall_banner" src="//openinstall.io/openinstall.js?id=8100217581458659753"></script> -->
+</body>
+</html>

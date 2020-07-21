@@ -1,0 +1,68 @@
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.3,user-scalable=no" />
+<head>
+    <title>好好笑der</title>
+
+
+    <script type="text/javascript">
+
+
+
+        function print(){
+
+            var tCtx = document.getElementById('textCanvas').getContext('2d'),
+                imageElem = document.getElementById('image');
+
+                var text = form.name.value;
+                tCtx.canvas.width = tCtx.measureText(text).width;
+                tCtx.fillText(text, 0, 10);
+                imageElem.src = tCtx.canvas.toDataURL();
+                console.log(imageElem.src);
+
+
+
+        }
+
+
+
+    </script>
+
+
+
+
+
+</head>
+<body>
+<div class="headerPage"></div>
+<div class="main">
+
+    <canvas id='textCanvas' style="display:block" hidden="hidden"></canvas>
+    <img id='image' hidden="hidden">
+    <br>
+    <form name="form">
+        <input type="text" name="name" id="nn" />
+        <input type="button" name="button" value="走你" onclick="print()" />
+    </form>
+
+
+
+
+
+</div>
+<div class="footerPage"></div>
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(function(){
+        /*公共部分
+         * 导航栏
+         * footer CopyRight
+         */
+        $(".headerpage").load("./mould/header.html");
+        $(".footerpage").load("./mould/footer.html");
+    });
+</script>
+
+</body>
+</html>
