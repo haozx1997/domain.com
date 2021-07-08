@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="res/js/gif.js"></script>
+  <!--    <script src="res/js/gif.worker.js"></script>-->
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    main {
+      font-family: arial, sans-serif
+    }
+
+    note {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    table td, table th {
+      border: 1px solid #cad9ea;
+      color: #666;
+      height: 30px;
+    }
+
+    table thead th {
+      background-color: #CCE8EB;
+      width: 100px;
+    }
+
+    table tr:nth-child(odd) {
+      background: #fff;
+    }
+
+    table tr:nth-child(even) {
+      background: #F5FAFA;
+    }
+  </style>
+</head>
+<body>
+<center>
+  <div id="note">
+    <p>note:序号是对应下载的文件名</p>
+    <p>eg: 在06行中上传的图片，点击两个图片之后会分别下载 06.gif 06.png</p>
+  </div>
+  <div id="main">
+  </div>
+
+  <script>
+
+    const typeGif = "gif";
+    const typePng = "png";
+    const imgConfMap = [];
+    const imgConfMapKey = [];
+    const mapKeyTagName = 'tagName';
+    const mapKeyFileName = 'fileName';
+    const mapKey1Type = '1Type';
+    const mapKey1Width = '1Width';
+    const mapKey1Height = '1Height';
+    const mapKey2Type = '2Type';
+    const mapKey2Width = '2Width';
+    const mapKey2Height = '2Height';
+    const mapKeyPng2Width = 'png2Width';
+    const mapKeyPng2Height = 'png2Height';
+
+    function init() {
+      console.log("init", imgConfMap.length);
+
+      for (let i = 1; i <= 24; i++) {
+        const str = i + '';
+        const name = str.padStart(2, '0');
+        const imgDate = [];
+        imgDate[mapKeyTagName] = i;
+        imgDate[mapKeyFileName] = name;
+        imgDate[mapKey1Type] = typeGif;
+        imgDate[mapKey1Width] = 240;
+        imgDate[mapKey1Height] = 240;
+        imgDate[mapKey2Type] = typePng;
+        imgDate[mapKey2Width] = 120;
+        imgDate[mapKey2Height] = 120;
+        console.log("init", imgConfMap.length);
+        imgConfMap[i] = imgDate;
+        console.log("init", i, name, imgConfMap.length, imgConfMap);
+        imgConfMapKey.push(imgDate[mapKeyTagName])
+      }
+      console.log("len", imgConfMap.length);
+      console.log("len", imgConfMap);
+
+      // 详情页横幅
+      const titleConf = [];
+      const titleImgName = "titleImg";
+      titleConf[mapKeyTagName] = titleImgName;
+      titleConf[mapKeyFileName] = '详情页横幅';
+      titleConf[mapKey1Type] = typePng;
+      titleConf[mapKey1Width] = 750;
+      titleConf[mapKey1Height] = 400;
+      imgConfMap[titleImgName] = titleConf;
+      imgConfMapKey.push(titleConf[mapKeyTagName])
+
+      // 表情封面图 聊天页图标
+
+
+      const miniConf = [];
+      miniConf[mapKeyTagName] = "miniImg";
+      miniConf[mapKeyFileName] = '两个小图标';
+      miniConf[mapKey1Type] = typePng;
+      miniConf[mapKey1Width] = 240;
+      miniConf[mapKey1Height] = 240;
+      miniConf[mapKey2Type] = typePng;
+      miniConf[mapKey2Width] = 50;
+      miniConf[mapKey2Height] = 50;
+      imgConfMap[miniConf[mapKeyTagName]] = miniConf;
+      imgConfMapKey.push(miniConf[mapKeyTagName])
+
+      console.log("len1", imgConfMap.length);
+
+      imgConfMapKey.forEach(function (item, index, array) {
+        console.log(item, index, imgConfMap[item], imgConfMap[item][mapKey2Height]);
+      });
+    }
+
+
+    init();
+    //
+    // for (let i = 1; i <= 24; i++) {
+    //     const str = i + '';
+    //     const name = str.padStart(2, '0');
+    //     imgNameList.push(name);
+    // }
+    // imgNameList.push(titleImgName)
+
+    let table = '<table border="0">';
+    const firstLine = '<tr>' +
+            `<td>文件名</td>` +
+            `<td>尽量选择 宽:高 比列接近 1 : 1 的图片</td>` +
+            `<td>gif 240 * 240 (点击图片即可下载)</td>` +
+            `<td>png 120 * 120 (点击图片即可下载)</td>` +
+            '</tr>'
+    table += firstLine;
+
+    imgConfMapKey.forEach(function (keyItem, index, array) {
+      console.log(keyItem, index, imgConfMap[keyItem], imgConfMap[keyItem][mapKey2Height]);
+      const item = imgConfMap[keyItem];
+      let tr = getOneLine(item);
+      if (index === 24) {
+        const titleLine = '<tr>' +
+                `<td>${item[mapKeyFileName]}</td>` +
+                `<td>尽量选择 宽:高 比列接近 750 : 400 的图片 </td>` +
+                `<td>png 750 * 400 (点击图片即可下载)</td>` +
+                `<td>无</td>` +
+                '</tr>'
+        table += titleLine;
+      } else if (index === 25) {
+        const titleLine = '<tr>' +
+                `<td>${item[mapKeyFileName]}</td>` +
+                `<td>选择 宽:高 比列接近 1 : 1 的图片 <br>并且在这里除去背景：<a href="https://www.aigei.com/bgremover">在线图片去底工具</a> </td>` +
+                `<td>大的 240 * 240 png</td>` +
+                `<td>小的 50 * 50 png</td>` +
+                '</tr>'
+        table += titleLine;
+      }
+      table += tr;
+    });
+
+    table += '</table>';
+    document.getElementById("main").innerHTML = table;
+
+    function getOneLine(imgData) {
+      const tagName = imgData[mapKeyTagName];
+      const fileName = imgData[mapKeyFileName];
+      return '<tr>' +
+              `<td>${fileName}</td>` +
+              `<td><input type="file" accept="image/*" id="choose-file-${tagName}" name="choose-file-${tagName}" class="choose-file-${tagName}"/></td>` +
+              `<div id="img-preview-${tagName}-original"></div>` +
+              `<td><div id="img-preview-${tagName}-line1"></div></td>` +
+              `<td><div id="img-preview-${tagName}-line2"></div></td>` +
+              '</tr>';
+    }
+
+  </script>
+
+
+  <script>
+    imgConfMapKey.forEach(function (keyItem, index, array) {
+      console.log(keyItem, index, imgConfMap[keyItem], imgConfMap[keyItem][mapKey2Height]);
+      const item = imgConfMap[keyItem];
+      const tagName = item[mapKeyTagName]
+      const chooseFile = document.getElementById("choose-file-" + tagName);
+      chooseFile.addEventListener("change", function () {
+        getImgData(item);
+      });
+    });
+
+
+    // 获取上传的图片
+    function getImgData(item) {
+      const tagName = item[mapKeyTagName]
+
+      const chooseFile = document.getElementById("choose-file-" + tagName);
+
+      const files = chooseFile.files[0];
+      if (files) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(files);
+        fileReader.addEventListener("load", function () {
+          const imgPreviewOrg = document.getElementById("img-preview-" + tagName + "-original");
+          imgPreviewOrg.style.display = "none";
+          imgPreviewOrg.innerHTML = `<img id="uploadImg-${tagName}" alt="上传的图片" crossOrigin="Anonymous"  ` +
+                  // 加载时触发
+                  ` onload="processImg('${tagName}')"  ` +
+                  `src="` + this.result + '" />';
+        });
+      }
+    }
+
+    function processImg(tagName) {
+      console.log("processImg start" + tagName);
+
+      const img = document.getElementById("uploadImg-" + tagName);
+      console.log("processImg" + img)
+      const imgConf = imgConfMap[tagName];
+      drawImage(img, imgConf);
+      // img.onload = drawImage(img, tagName);
+    }
+
+
+    function drawImage(img, imgConf) {
+      const tagName = imgConf[mapKeyTagName];
+      const fileName = imgConf[mapKeyFileName];
+
+      // 画第一列
+      if (imgConf[mapKey1Type] === typePng) {
+        drawPng(img, imgConf[mapKey1Height], imgConf[mapKey1Width], tagName, fileName, "line1");
+      } else {
+        drawGif(img, imgConf[mapKey1Height], imgConf[mapKey1Width], tagName, fileName, "line1");
+      }
+
+      if (!imgConf[mapKey2Type]) {
+        return;
+      }
+
+      if (imgConf[mapKey2Type] === typePng) {
+        drawPng(img, imgConf[mapKey2Height], imgConf[mapKey2Width], tagName, fileName, "line2");
+      } else {
+        drawGif(img, imgConf[mapKey2Height], imgConf[mapKey2Width], tagName, fileName, "line2");
+      }
+    }
+
+    function drawPng(img, height, width, tagName, fileName, line) {
+      const canvas = convertImageToCanvas(img, height, width);
+      const src = canvas.toDataURL("image/png");
+      const imgPreviewPng = document.getElementById("img-preview-" + tagName + "-" + line);
+      imgPreviewPng.innerHTML = getATag(src, "png", tagName, fileName);
+    }
+
+    function drawGif(img, height, width, tagName, fileName, line) {
+      const canvas = convertImageToCanvas(img, height, width);
+      toGif(canvas, tagName, fileName, line)
+    }
+
+    /**
+     * 指定长宽
+     * @param image
+     * @param height
+     * @param width
+     * @returns HTMLCanvasElement
+     */
+    function convertImageToCanvas(image, height, width) {
+      const canvas = document.createElement("canvas");
+      const imageWidth = image.width;
+      const imageHeight = image.height;
+
+      const maxOri = Math.max(imageWidth, imageHeight)
+
+      canvas.height = height
+      canvas.width = width
+      console.log("image", 0, 0, imageHeight, imageWidth, 0, 0, height, width)
+      canvas.getContext("2d").drawImage(image, 0, 0, maxOri, maxOri, 0, 0, width, width)
+      return canvas;
+    }
+
+    function toGif(canvas, tagName, fileName, line) {
+      const gif = new GIF({
+        workers: 2,
+        quality: 10,
+        workerScript: "res/js/gif.worker.js"
+      });
+      console.log(canvas)
+      // add a image element
+      gif.addFrame(canvas);
+      gif.on('finished', function (blob) {
+        const src = URL.createObjectURL(blob);
+        const imgPreviewGif = document.getElementById("img-preview-" + tagName + "-" + line);
+        imgPreviewGif.innerHTML = getATag(src, "gif", tagName, fileName);
+      });
+      gif.render()
+    }
+
+
+    /**
+     * 生成  a 标签，点击可下载，文件名可指定
+     * @param src
+     * @param type
+     * @param tagName
+     * @param fileName
+     * @returns {string}
+     */
+    function getATag(src, type, tagName, fileName) {
+      const imgTag = `<img id="${type}Img${tagName}" alt="${type}${tagName}" crossOrigin="Anonymous" src="${src}" />`;
+      const aTag = `<a href="${src}" download="${fileName}.${type}"> ${imgTag} </a>`;
+      return aTag;
+    }
+
+
+  </script>
+  <p>爱你哟，霞</p>
+</center>
+</body>
+</html>
