@@ -29,17 +29,6 @@
         }
     </script>
     <style>
-        .box{
-            width: 50%;
-            margin: 50px auto;
-            height:5811px;
-        }
-        .img-box{
-            width: 100%;
-            position:relative;
-            z-index:1;
-            height:5811px;
-        }
         .img-box img{
             position:absolute;
             top:0;
@@ -52,18 +41,11 @@
             *zoom:1;
             height:5811px;
         }
-        .img-box:before {
-            content: "";
-            display: inline-block;
-            padding-bottom: 100%;
-            width: 0.1px;	/*必须要有数值，否则无法把高度撑起来*/
-            vertical-align: middle;
 
     </style>
 </head>
 
     <script>
-        let SHOW_TOC = true;
         const screenW = document.documentElement.clientWidth;
         const screenH = document.documentElement.clientHeight;
         const IS_PC = screenW > screenH
@@ -125,13 +107,6 @@
                                 likeCountMax = Math.max(likeCountData[j], likeCountMax)
                                 likeCountMin = Math.min(likeCountData[j], likeCountMin)
                             }
-                            // upId  biliRecordVo["upId"]
-                            // up名 biliRecordVo["upName"]
-                            // 时间 moment(biliRecordVo["createTime"]).format("YYYY-MM-DD hh:mm:ss")
-                            // 粉丝数 biliRecordVo["followerCount"]
-                            // 点赞数 biliRecordVo["likeCount"]
-                            // 视频数 biliRecordVo["videoCount"]
-                            // 关注他人数 biliRecordVo["attentionCount"]
 
                         }
                         data[0] = followerCountData
@@ -139,12 +114,9 @@
                         data["confg.followerCount.step"] = getNumWay((followerCountMax - followerCountMin) / 11)
                         data["confg.likeCount.step"] = getNumWay((likeCountMax - likeCountMin) / 11)
                         addCanvasHtml(biliUpVo["upId"], biliUpVo["upName"], labels, data)
-
                     }
                 }
-
             });
-
         });
 
         /**
@@ -199,7 +171,6 @@
             canvasHtml.id = chartId;
             canvasHtml.style.cssText = "height:666px;max-height:666px"
 
-            // <a id="seg-1" class="seg-begin"><h1>第1章节</h1></a>
             const aChart = document.createElement("a");
             aChart.id = "seg-begin" + chartId;
             aChart.className = "seg-begin"
@@ -240,20 +211,6 @@
                 },
                 options: {
                     maintainAspectRatio: false,
-                    plugins: {
-                        // title: {
-                        //     display: true,
-                        //     text: chartName,
-                        //     font: {
-                        //         size: 22
-                        //     }
-                        // }
-                    },
-                    elements: {
-                        line: {
-                            // tension: 0 // 禁用贝塞尔曲线
-                        }
-                    },
                     scales: {
                         followerCount: {
                             display: true,
@@ -288,7 +245,6 @@
                         padding: {
                             left: IS_PC ? 50 : 0,
                             right: IS_PC ? 50 : 0,
-                            bottom: 50
                         }
                     },
                     responsive: true,
@@ -316,15 +272,10 @@
         html {
             scroll-behavior: smooth;
         }
-        /*隐藏 toc 滚动条*/
+        /*隐藏滚动条*/
         ::-webkit-scrollbar {
             display: none; /* Chrome Safari */
         }
-
-        #h2 {
-            color: grey;
-        }
-
     </style>
 
 
