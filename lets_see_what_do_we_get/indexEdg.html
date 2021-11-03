@@ -13,12 +13,6 @@
     <link rel="shortcut icon" type="image/x-icon" id="links"/>
     <script>
         var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?910e858ffb58677c1e9933ea61c21440";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
 
         var num = Math.ceil(Math.random() * 10);
         document.getElementById("links").href = "res/image/ico/" + num + ".ico";
@@ -34,19 +28,7 @@
             document.write("<link href=" + filename + " rel=stylesheet>");
         }
     </script>
-    <script>
-        (function() {
-            var cx = '007024670556222371522:ingnytkqqyq';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-    </script>
     <style>
-
         .box{
             width: 50%;
             margin: 50px auto;
@@ -221,9 +203,7 @@
             aChart.id = "seg-begin" + chartId;
             aChart.className = "seg-begin"
 
-            const aH2 = document.createElement("h2");
-            aH2.innerHTML = chartName
-            aChart.appendChild(aH2)
+
             const charts = document.getElementById("charts");
             charts.appendChild(aChart)
             charts.appendChild(canvasHtml)
@@ -352,92 +332,33 @@
 <div class="headerPage"></div>
 
 <center>
-    <!--    <canvas id="myChart" width="400" height="400"></canvas>-->
+    <a href="https://space.bilibili.com/31536760">EDG电子竞技俱乐部</a>
     <div id="charts"></div>
-
+    <img src="/res/image/edg.webp">
     <style type=\"text/css\">
         td {
             text-align: center;
             vertical-align: middle;
         }
     </style>
-    <!--目录-->
-    <div id="toc" onclick="showOrHide(null)"
-         scr
-         onmouseover="disableScroll()"
-         onmouseout="enableScroll()">
-    </div>
-    <div id="toc-button" onclick="showOrHide(null)" hidden="hidden">目<br>录</div>
-    <script>
 
-        function disableScroll() {
-            console.log("disableScroll")
-            if (IS_PC) {
-                $('body').css({
-                    overflow: 'hidden',
-                    height: '100%',
-                });
-            }
-        }
-        function enableScroll() {
-            console.log("enableScroll")
-            $('body').css({
-                overflow: 'auto',
-                height: 'auto'
-            });
-        }
-
-        /**
-         * 滚动到某id的元素
-         * @param eleId
-         */
-        function gotoEle(eleId) {
-            const top = document.getElementById(eleId).getBoundingClientRect().top+document.documentElement.scrollTop;
-            document.documentElement.scrollTop = top
-            console.log("gotoEle: " + top)
-        }
-
-        /**
-         * 调用切换目录 显示/隐藏
-         */
-        function showOrHide(f) {
-            console.log(SHOW_TOC ? "show" : "hide")
-            if (f !== null) {
-                if (f) {
-                    $("#toc").hide('slow')
-                    $("#toc-button").show('slow')
-                    SHOW_TOC = true
-                } else {
-                    $("#toc").show('slow')
-                    $("#toc-button").hide('slow')
-                    SHOW_TOC = false
-                }
-            }
-            if (SHOW_TOC) {
-                $("#toc").hide('slow')
-                $("#toc-button").show('slow')
-            } else {
-                $("#toc").show('slow')
-                $("#toc-button").hide('slow')
-            }
-            SHOW_TOC = !SHOW_TOC
-        }
-
-    </script>
 </center>
-<div id="footerPage" class="footerPage" style="float:top "></div>
-<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<div id="footerPage" class="footerPage" style="float:top; font-size: 10px">
+    <center>
+        <div class="copyright">
+            Copyright
+            <a href="https://dev.tencent.com/user?from=coding" style="color:black; cursor:text" target="__blank">
+                &copy;
+            </a>
+            郝爸爸
+        </div>
+        <div style="width:300px;margin:0 auto; padding:20px 0; ">
+            <img src="/mould/cop.png"> </img>
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802031788" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备 11010802031788号</p></a>
+            <br><a href="http://beian.gov.cn/portal/registerSystemInfo?recordcode=11010802031788">晋ICP备19002591号</a>
+        </div>
+    </center>
 
-<script>
-    $(function () {
-        /*公共部分
-         * 导航栏
-         * footer CopyRight
-         */
-        $(".headerpage").load("./mould/header.html");
-        $(".footerpage").load("./mould/footer.html");
-
-    });
-</script>
+</div>
 </body>
 </html>
