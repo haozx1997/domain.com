@@ -70,10 +70,11 @@
 
         // 获取域名
         host = window.location.host;
+        httpHead = window.location.href.includes("https") ? "https://" : "http://"
         curUrl = host.includes("localhost") ?
-            "http://localhost:8080/bili/getUpInfoList" :
+            "localhost:8080/bili/getUpInfoList" :
             "https://goodgoodlaugh.com/8080/bili/getUpInfoList"
-        urlWithParam = curUrl + "?upId=31536760"
+        urlWithParam = httpHead + curUrl + "?upId=31536760"
         console.log(urlWithParam)
         const segs = [];
 
