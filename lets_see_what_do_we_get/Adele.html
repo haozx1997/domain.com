@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" id="links" href="res/image/ico/adele.ico"/>
+    <title>Adele</title>
+    <script>
+        var _hmt = _hmt || [];
+
+        // 判断是否为移动端运行环境
+        if (/iPhone|iPod|Android/i.test(navigator.userAgent)) {
+            setActiveStyleSheet("res/css/index_mobile.css");
+        } else {
+            setActiveStyleSheet("res/css/index_pc.css");
+        }
+
+        // 判断完毕后加载样式
+        function setActiveStyleSheet(filename) {
+            document.write("<link href=" + filename + " rel=stylesheet>");
+        }
+    </script>
+    <style>
+        #main {
+            font-size: large;
+            text-align: center;
+            top: 0;
+            left: 50%;
+
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <a href="res/music/01.Strangers%20By%20Nature.mp3" target="_blank">01.Strangers By Nature.mp3</a> <br>
+    <a href="res/music/02.Easy%20On%20Me.mp3" target="_blank">02.Easy On Me.mp3</a> <br>
+    <a href="res/music/03.My%20Little%20Love.mp3" target="_blank">03.My Little Love.mp3</a> <br>
+    <a href="res/music/04.Cry%20Your%20Heart%20Out.mp3" target="_blank">04.Cry Your Heart Out.mp3</a> <br>
+    <a href="res/music/05.Oh%20My%20God.mp3" target="_blank">05.Oh My God.mp3</a> <br>
+    <a href="res/music/06.Can%20I%20Get%20It.mp3" target="_blank">06.Can I Get It.mp3</a> <br>
+    <a href="res/music/07.I%20Drink%20Wine.mp3" target="_blank">07.I Drink Wine.mp3</a> <br>
+    <a href="res/music/08.All%20Night%20Parking%20(With%20Erroll%20Garner)%20Interlude.mp3" target="_blank">08.All Night Parking
+        (With Erroll Garner) Interlude.mp3</a> <br>
+    <a href="res/music/09.Woman%20Like%20Me.mp3" target="_blank">09.Woman Like Me.mp3</a> <br>
+    <a href="res/music/10.Hold%20On.mp3" target="_blank">10.Hold On.mp3</a> <br>
+    <a href="res/music/11.To%20Be%20Loved.mp3" target="_blank">11.To Be Loved.mp3</a> <br>
+    <a href="res/music/12.Love%20Is%20A%20Game.mp3" target="_blank">12.Love Is A Game.mp3</a> <br>
+
+    <a href="res/Adele.30.zip">Adele.30.zip</a> <br>
+</div>
+</body>
+</html>
